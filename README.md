@@ -62,8 +62,11 @@ python scripts/add_collection.py
 ```
 
 It asks for the release year, collection name, base-card count, manufacturer
-(default `Topps`), optional checklist URL, optional note, and first card number
-(default `1`). It previews the output and asks for confirmation before writing.
+(default `Topps`), optional checklist URL, optional note, which optional card
+fields every template should contain, and the first card number (default `1`).
+The field selector shows a numbered list and accepts comma-separated choices,
+`all`, or an empty response for none. It previews the output and asks for
+confirmation before writing.
 
 This creates:
 
@@ -76,20 +79,24 @@ data/cards/2026/chrome-galaxy/002.json.template
 
 Templates use `.json.template` so unfinished records are excluded from
 validation and generated indexes. For each card, replace the empty `title`, add
-only optional fields present in the source data, and rename the file from
-`NNN.json.template` to `NNN.json`. Run `python scripts/validate.py` afterward.
+values for the selected optional fields, add any other fields present in the
+source data, and rename the file from `NNN.json.template` to `NNN.json`. Scalar
+placeholders are empty strings; `affiliation` and `notes` use empty arrays. The
+finalizer rejects placeholders that have not been completed.
 
 For automation, the same values can be supplied without prompts:
 
 ```powershell
 python scripts/add_collection.py 2026 "Chrome Galaxy" 100 `
-  --checklist-url "https://example.com/checklist"
+  --checklist-url "https://example.com/checklist" `
+  --field location --field affiliation
 ```
 
 Advanced options include `--manufacturer`, repeatable `--note`,
-`--first-number`, `--number-width`, and `--dry-run`. The script checks every
-target before writing and refuses to replace existing files unless
-`--overwrite` is explicitly supplied.
+repeatable `--field`, `--first-number`, `--number-width`, and `--dry-run`.
+Allowed field names match the optional properties in the card schema. The
+script checks every target before writing and refuses to replace existing files
+unless `--overwrite` is explicitly supplied.
 
 ## Finalizing card templates
 
@@ -159,7 +166,6 @@ until their source data is completed and the collection is finalized.
   "description": "Using information from Bo-Katan Kryze, Din Djarin located former Jedi Ahsoka Tano on Corvus.",
   "species": "Togruta",
   "home_world": "Unknown",
-  "location": "Corvus",
   "affiliation": ["Jedi Order", "Rebel Alliance"]
 }
 ```
@@ -168,4 +174,6 @@ The required fields are `id`, `year`, `collection`, `number`, and `title`.
 Optional fields are omitted when they do not apply; they are not stored as
 `null`. They include `section`, `subtitle`, `franchise`, `insert_collection`,
 the description fields, `species`, `home_world`, `location`, `affiliation`, and
-`notes`. Explicit source values such as `"Unknown"` are preserved.
+`notes`. Include `location` only when the source explicitly supplies a location,
+for example `"location": "Death Star II"`; do not infer it from a description.
+Explicit source values such as `"Unknown"` are preserved.

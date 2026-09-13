@@ -14,6 +14,22 @@ from urllib.parse import urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
+OPTIONAL_TEMPLATE_FIELDS = (
+    ("section", "Section"),
+    ("subtitle", "Subtitle"),
+    ("franchise", "Franchise"),
+    ("insert_collection", "Insert collection"),
+    ("description", "Description"),
+    ("front_description", "Front description"),
+    ("back_description", "Back description"),
+    ("species", "Species"),
+    ("home_world", "Home world"),
+    ("location", "Location"),
+    ("affiliation", "Affiliation"),
+    ("notes", "Card notes"),
+)
+OPTIONAL_FIELD_NAMES = tuple(name for name, _ in OPTIONAL_TEMPLATE_FIELDS)
+ARRAY_FIELDS = {"affiliation", "notes"}
 
 
 def slug(value: str) -> str:
@@ -89,6 +105,39 @@ def prompt_url() -> str | None:
             print(f"Invalid value: {error}")
 
 
+def prompt_optional_fields() -> list[str]:
+    """Let an interactive user choose fields to prefill in every card template."""
+    print("\nOptional fields to include in each card template:")
+    for index, (name, label) in enumerate(OPTIONAL_TEMPLATE_FIELDS, start=1):
+        print(f"  {index}. {label} ({name})")
+
+    while True:
+        value = input(
+            "Select comma-separated numbers, 'all', or press Enter for none: "
+        ).strip()
+        if not value:
+            return []
+        if value.casefold() == "all":
+            return list(OPTIONAL_FIELD_NAMES)
+
+        selected: list[str] = []
+        invalid: list[str] = []
+        for part in (item.strip() for item in value.split(",")):
+            try:
+                index = int(part)
+            except ValueError:
+                invalid.append(part)
+                continue
+            if not 1 <= index <= len(OPTIONAL_TEMPLATE_FIELDS):
+                invalid.append(part)
+                continue
+            selected.append(OPTIONAL_TEMPLATE_FIELDS[index - 1][0])
+
+        if not invalid:
+            return list(dict.fromkeys(selected))
+        print(f"Invalid selection: {', '.join(invalid)}")
+
+
 def confirm_creation() -> bool:
     while True:
         value = input("Create these files? [y/N]: ").strip().casefold()
@@ -115,6 +164,7 @@ def scaffold_collection(
     manufacturer: str,
     url: str | None,
     notes: list[str],
+    optional_fields: list[str],
     first_number: int,
     number_width: int,
     overwrite: bool,
@@ -123,6 +173,7 @@ def scaffold_collection(
     name = name.strip()
     manufacturer = manufacturer.strip()
     notes = list(dict.fromkeys(note.strip() for note in notes if note.strip()))
+    optional_fields = list(dict.fromkeys(optional_fields))
     if year < 1900:
         raise ValueError("year must be 1900 or later")
     if base_card_count < 0:
@@ -135,6 +186,9 @@ def scaffold_collection(
         raise ValueError("collection name cannot be empty")
     if not manufacturer:
         raise ValueError("manufacturer cannot be empty")
+    unknown_fields = [field for field in optional_fields if field not in OPTIONAL_FIELD_NAMES]
+    if unknown_fields:
+        raise ValueError(f"unknown optional field(s): {', '.join(unknown_fields)}")
 
     collection_slug = slug(name)
     if not collection_slug:
@@ -169,6 +223,8 @@ def scaffold_collection(
             "number": number_text,
             "title": "",
         }
+        for field in optional_fields:
+            template[field] = [] if field in ARRAY_FIELDS else ""
         templates.append((card_directory / f"{padded_number}.json.template", template))
 
     targets = [collection_path, *(path for path, _ in templates)]
@@ -188,6 +244,8 @@ def scaffold_collection(
     action = "Would create" if dry_run else "Created"
     print(f"{action} collection: {collection_path.relative_to(root)}")
     print(f"{action} {len(templates)} card template(s) in {card_directory.relative_to(root)}")
+    selected = ", ".join(optional_fields) if optional_fields else "none"
+    print(f"Template optional fields: {selected}")
     return collection_path, [path for path, _ in templates]
 
 
@@ -208,6 +266,14 @@ def parse_args() -> argparse.Namespace:
         action="append",
         default=[],
         help="Collection note; repeat the option to add multiple notes.",
+    )
+    parser.add_argument(
+        "--field",
+        dest="optional_fields",
+        action="append",
+        choices=OPTIONAL_FIELD_NAMES,
+        default=[],
+        help="Optional card field to include in every template; repeat as needed.",
     )
     parser.add_argument(
         "--first-number",
@@ -259,6 +325,7 @@ def main() -> int:
                 note = input("Collection note (optional): ").strip()
                 if note:
                     args.note = [note]
+            args.optional_fields = prompt_optional_fields()
             args.first_number = prompt_integer(
                 "First card number", non_negative_integer, args.first_number
             )
@@ -271,6 +338,7 @@ def main() -> int:
                 manufacturer=args.manufacturer,
                 url=args.checklist_url,
                 notes=args.note,
+                optional_fields=args.optional_fields,
                 first_number=args.first_number,
                 number_width=args.number_width,
                 overwrite=args.overwrite,
@@ -290,6 +358,7 @@ def main() -> int:
             manufacturer=args.manufacturer,
             url=args.checklist_url,
             notes=args.note,
+            optional_fields=args.optional_fields,
             first_number=args.first_number,
             number_width=args.number_width,
             overwrite=args.overwrite,
