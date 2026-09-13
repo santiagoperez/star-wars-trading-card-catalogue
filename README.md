@@ -12,6 +12,8 @@ data/collections/           One metadata file per collection
 data/cards/                 Source of truth: one JSON file per card
 scripts/validate.py         Validate source card files
 scripts/build_index.py      Build derived JSONL and search index files
+scripts/add_collection.py   Scaffold collection metadata and card templates
+scripts/finalize_collection.py  Validate and finalize card templates
 scripts/import_google_sheet.py  Import an exported Google Sheets workbook
 generated/                  Rebuildable output (not committed)
 ```
@@ -50,6 +52,76 @@ It stores shared facts such as manufacturer, base-card count, and checklist URL
 without repeating them in every card record. A collection id is also the prefix
 used by its card ids; for example, `2023-star-wars` owns cards beginning with
 `2023-star-wars-`.
+
+## Adding a collection
+
+Run the guided setup:
+
+```powershell
+python scripts/add_collection.py
+```
+
+It asks for the release year, collection name, base-card count, manufacturer
+(default `Topps`), optional checklist URL, optional note, and first card number
+(default `1`). It previews the output and asks for confirmation before writing.
+
+This creates:
+
+```text
+data/collections/2026-chrome-galaxy.json
+data/cards/2026/chrome-galaxy/001.json.template
+data/cards/2026/chrome-galaxy/002.json.template
+...
+```
+
+Templates use `.json.template` so unfinished records are excluded from
+validation and generated indexes. For each card, replace the empty `title`, add
+only optional fields present in the source data, and rename the file from
+`NNN.json.template` to `NNN.json`. Run `python scripts/validate.py` afterward.
+
+For automation, the same values can be supplied without prompts:
+
+```powershell
+python scripts/add_collection.py 2026 "Chrome Galaxy" 100 `
+  --checklist-url "https://example.com/checklist"
+```
+
+Advanced options include `--manufacturer`, repeatable `--note`,
+`--first-number`, `--number-width`, and `--dry-run`. The script checks every
+target before writing and refuses to replace existing files unless
+`--overwrite` is explicitly supplied.
+
+## Finalizing card templates
+
+After filling every template in a collection, run a validation-only preview:
+
+```powershell
+python scripts/finalize_collection.py --dry-run
+```
+
+The guided command asks for the year and collection name. It validates every
+`.json.template` file against the card schema and also checks:
+
+- collection metadata and card-to-collection consistency;
+- total finalized cards plus templates against the declared base-card count;
+- duplicate card ids;
+- conflicts with existing `.json` files; and
+- that the entire batch can be renamed safely.
+
+If the dry run succeeds, finalize the collection with:
+
+```powershell
+python scripts/finalize_collection.py
+```
+
+The script repeats validation, asks for confirmation, and renames the complete
+batch from `.json.template` to `.json`. If any file fails, nothing is renamed.
+For automation, pass the values directly, for example:
+
+```powershell
+python scripts/finalize_collection.py 2026 "Chrome Galaxy" --dry-run
+python scripts/finalize_collection.py 2026 "Chrome Galaxy"
+```
 
 ## Importing a Google Sheets tab
 
