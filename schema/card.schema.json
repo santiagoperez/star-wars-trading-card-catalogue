@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/card.schema.json",
+  "title": "Star Wars Topps card",
+  "description": "A single card in the Star Wars Topps catalog.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "year",
+    "collection",
+    "number",
+    "title",
+    "entities"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900
+    },
+    "collection": {
+      "type": "string",
+      "minLength": 1
+    },
+    "number": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "section": { "$ref": "#/$defs/nullableString" },
+    "subtitle": { "$ref": "#/$defs/nullableString" },
+    "franchise": { "$ref": "#/$defs/nullableString" },
+    "insert_collection": { "$ref": "#/$defs/nullableString" },
+    "description": { "$ref": "#/$defs/nullableString" },
+    "front_description": { "$ref": "#/$defs/nullableString" },
+    "back_description": { "$ref": "#/$defs/nullableString" },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "entities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "characters",
+        "locations",
+        "home_worlds",
+        "species",
+        "organizations",
+        "vehicles",
+        "droids",
+        "creatures",
+        "concepts"
+      ],
+      "properties": {
+        "characters": { "$ref": "#/$defs/entityList" },
+        "locations": { "$ref": "#/$defs/entityList" },
+        "home_worlds": { "$ref": "#/$defs/entityList" },
+        "species": { "$ref": "#/$defs/entityList" },
+        "organizations": { "$ref": "#/$defs/entityList" },
+        "vehicles": { "$ref": "#/$defs/entityList" },
+        "droids": { "$ref": "#/$defs/entityList" },
+        "creatures": { "$ref": "#/$defs/entityList" },
+        "concepts": { "$ref": "#/$defs/entityList" }
+      }
+    }
+  },
+  "$defs": {
+    "nullableString": {
+      "type": ["string", "null"]
+    },
+    "entityList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    }
+  }
+}
