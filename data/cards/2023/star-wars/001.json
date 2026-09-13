@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-001",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "1",
+  "title": "Ahsoka Tano",
+  "franchise": "The Mandalorian",
+  "description": "Using information from Bo-Katan Kryze, Din Djarin located former Jedi Ahsoka Tano on Corvus. Ahsoka was intrigued by The Child and learned that his name was Grogu. Ahsoka and Djarin joined forces to battle Morgan Elsbeth. Although Ahsoka declined to train Grogu, she told Djarin that Grogu could reach out to other Jedi at the Jedi Temple on Tython.",
+  "species": "Togruta",
+  "home_world": "Unknown",
+  "affiliation": [
+    "Jedi Order",
+    "Rebel Alliance"
+  ]
+}
