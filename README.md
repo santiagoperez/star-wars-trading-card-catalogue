@@ -139,6 +139,11 @@ as `Species` and `Home World` remain source text. Blank optional fields are
 omitted. Existing card files are never replaced unless `--overwrite` is
 provided.
 
+If a source row has a card number but its required title is still blank, keep it
+out of the canonical catalog by adding `--template-incomplete`. Complete rows
+are imported as `.json`; incomplete rows are preserved as `.json.template`
+until their source data is completed and the collection is finalized.
+
 ## Minimal card
 
 ```json

@@ -112,14 +112,7 @@ def finalize_collection(
         raise ValueError(f"no .json.template files found in {card_directory}")
 
     existing_paths = sorted(card_directory.glob("*.json"))
-    expected_count = collection.get("base_card_count")
-    if isinstance(expected_count, int) and len(existing_paths) + len(templates) != expected_count:
-        errors.append(
-            f"{relative(card_directory, root)}: found {len(existing_paths)} finalized "
-            f"card(s) and {len(templates)} template(s), but the collection declares "
-            f"{expected_count} base card(s)"
-        )
-
+    base_record_count = 0
     existing_ids: set[str] = set()
     for existing_path in existing_paths:
         try:
@@ -130,6 +123,8 @@ def finalize_collection(
         existing_id = existing.get("id")
         if isinstance(existing_id, str):
             existing_ids.add(existing_id)
+        if "insert_collection" not in existing:
+            base_record_count += 1
 
     planned: list[tuple[Path, Path]] = []
     template_ids: set[str] = set()
@@ -147,6 +142,9 @@ def finalize_collection(
         except (OSError, json.JSONDecodeError, ValueError) as error:
             errors.append(f"{relative(source, root)}: cannot read JSON: {error}")
             continue
+
+        if "insert_collection" not in card:
+            base_record_count += 1
 
         errors.extend(schema_errors(source, card, card_validator, root))
         card_id = card.get("id")
@@ -170,6 +168,13 @@ def finalize_collection(
             errors.append(
                 f"{relative(source, root)} $.id: must start with {collection_id + '-'!r}"
             )
+
+    expected_count = collection.get("base_card_count")
+    if isinstance(expected_count, int) and base_record_count != expected_count:
+        errors.append(
+            f"{relative(card_directory, root)}: found {base_record_count} base-card "
+            f"record(s), but the collection declares {expected_count} base card(s)"
+        )
 
     if errors:
         print(f"Validation failed with {len(errors)} error(s):", file=sys.stderr)

@@ -87,13 +87,19 @@ def split_values(value: object) -> list[str]:
     return list(dict.fromkeys(part.strip() for part in text.split("/") if part.strip()))
 
 
-def make_card(row: dict[str, object], row_number: int) -> tuple[dict[str, object], str]:
+def make_card(
+    row: dict[str, object],
+    row_number: int,
+    allow_blank_title: bool = False,
+) -> tuple[dict[str, object], str]:
     year = whole_number(row["Year"], "year", row_number)
     collection = clean_text(row["Collection"])
     number = card_number(row["#"], row_number)
     title = clean_text(row["Title"])
-    if not collection or not title:
-        raise ValueError(f"Row {row_number}: collection and title are required")
+    if not collection:
+        raise ValueError(f"Row {row_number}: collection is required")
+    if not title and not allow_blank_title:
+        raise ValueError(f"Row {row_number}: title is required")
 
     collection_slug = slug(collection)
     number_slug = slug(number)
@@ -131,6 +137,7 @@ def import_sheet(
     output_root: Path,
     overwrite: bool = False,
     dry_run: bool = False,
+    template_incomplete: bool = False,
 ) -> int:
     workbook = load_workbook(workbook_path, read_only=True, data_only=True)
     if sheet_name not in workbook.sheetnames:
@@ -157,10 +164,17 @@ def import_sheet(
             for index, name in enumerate(headers)
             if name
         }
-        card, filename = make_card(source, row_number)
+        incomplete = not clean_text(source.get("Title"))
+        card, filename = make_card(
+            source,
+            row_number,
+            allow_blank_title=template_incomplete and incomplete,
+        )
         if card["id"] in ids:
             raise ValueError(f"Row {row_number}: duplicate card id {card['id']!r}")
         ids.add(str(card["id"]))
+        if incomplete:
+            filename += ".template"
         destination = output_root / str(card["year"]) / slug(str(card["collection"])) / filename
         planned.append((destination, card))
 
@@ -178,8 +192,14 @@ def import_sheet(
                 encoding="utf-8",
             )
 
+    template_count = sum(path.name.endswith(".json.template") for path, _ in planned)
+    card_count = len(planned) - template_count
     action = "Would import" if dry_run else "Imported"
-    print(f"{action} {len(planned)} card(s) from {sheet_name!r}.")
+    template_action = "would create" if dry_run else "created"
+    print(
+        f"{action} {card_count} card(s) and {template_action} "
+        f"{template_count} template(s) from {sheet_name!r}."
+    )
     return len(planned)
 
 
@@ -190,13 +210,25 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="Card data root.")
     parser.add_argument("--overwrite", action="store_true", help="Replace existing card files.")
     parser.add_argument("--dry-run", action="store_true", help="Check input without writing files.")
+    parser.add_argument(
+        "--template-incomplete",
+        action="store_true",
+        help="Write rows with blank titles as .json.template files.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
     try:
-        import_sheet(args.workbook, args.sheet, args.output, args.overwrite, args.dry_run)
+        import_sheet(
+            args.workbook,
+            args.sheet,
+            args.output,
+            args.overwrite,
+            args.dry_run,
+            args.template_incomplete,
+        )
     except (FileNotFoundError, OSError, ValueError) as error:
         print(f"Import failed: {error}")
         return 1
