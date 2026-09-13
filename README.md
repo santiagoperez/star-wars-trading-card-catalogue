@@ -136,9 +136,10 @@ python scripts/validate.py
 
 The importer copies supported source columns into their corresponding canonical
 fields. Slash-separated `Affiliation` values become an array, while values such
-as `Species` and `Home World` remain source text. Blank optional fields are
-omitted. Existing card files are never replaced unless `--overwrite` is
-provided.
+as `Species`, `Home World`, and `Location` remain source text. `Location`
+identifies the place explicitly shown for a card and is separate from a
+subject's `Home World`. Blank optional fields are omitted. Existing card files
+are never replaced unless `--overwrite` is provided.
 
 If a source row has a card number but its required title is still blank, keep it
 out of the canonical catalog by adding `--template-incomplete`. Complete rows
@@ -158,10 +159,13 @@ until their source data is completed and the collection is finalized.
   "description": "Using information from Bo-Katan Kryze, Din Djarin located former Jedi Ahsoka Tano on Corvus.",
   "species": "Togruta",
   "home_world": "Unknown",
+  "location": "Corvus",
   "affiliation": ["Jedi Order", "Rebel Alliance"]
 }
 ```
 
 The required fields are `id`, `year`, `collection`, `number`, and `title`.
 Optional fields are omitted when they do not apply; they are not stored as
-`null`. Explicit source values such as `"Unknown"` are preserved.
+`null`. They include `section`, `subtitle`, `franchise`, `insert_collection`,
+the description fields, `species`, `home_world`, `location`, `affiliation`, and
+`notes`. Explicit source values such as `"Unknown"` are preserved.

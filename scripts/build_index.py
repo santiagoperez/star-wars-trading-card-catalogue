@@ -44,6 +44,7 @@ def main() -> int:
                 "back_description",
                 "species",
                 "home_world",
+                "location",
             )
         ]
         list_values = [

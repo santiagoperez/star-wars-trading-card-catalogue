@@ -39,6 +39,7 @@ OPTIONAL_SCALAR_COLUMNS = {
     "Back Description": "back_description",
     "Species": "species",
     "Home World": "home_world",
+    "Location": "location",
 }
 
 

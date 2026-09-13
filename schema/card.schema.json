@@ -43,6 +43,7 @@
     "back_description": { "$ref": "#/$defs/nonEmptyString" },
     "species": { "$ref": "#/$defs/nonEmptyString" },
     "home_world": { "$ref": "#/$defs/nonEmptyString" },
+    "location": { "$ref": "#/$defs/nonEmptyString" },
     "affiliation": { "$ref": "#/$defs/nonEmptyStringList" },
     "notes": { "$ref": "#/$defs/nonEmptyStringList" }
   },
