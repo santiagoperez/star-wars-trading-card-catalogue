@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-014",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "14",
+  "title": "Jib Dodger",
+  "franchise": "The Mandalorian",
+  "description": "Jib Dodger was one of the New Republic X-wing pilots who answered a distress beacon initiated by the lone human crew member aboard a prison transport. The tracking signal went live during the attempt to break out Twi'lek criminal Qin. The Mandalorian, Din Djarin, hid the beacon on Qin. The X-wing pilots arrived and destroyed Ranzar Malk's station.",
+  "species": "Human",
+  "home_world": "Unknown",
+  "affiliation": [
+    "New Republic"
+  ]
+}

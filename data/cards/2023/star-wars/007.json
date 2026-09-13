@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-007",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "7",
+  "title": "D-0",
+  "franchise": "Star Wars: The Rise of Skywalker",
+  "description": "During the hunt for the Sith Wayfinder, Rey and her friends encountered a deactivated Droid named D-0. The Droid had belonged to Ochi, the Sith assassin. Poe Dameron later realized that D-0 had information that could help lead the Resistance to Exegol. After their victory, D-0 celebrated with BB-8 and their friends.",
+  "species": "Droid",
+  "home_world": "Unknown",
+  "affiliation": [
+    "Ochi's crew"
+  ]
+}

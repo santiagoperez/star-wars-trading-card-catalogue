@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-030",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "30",
+  "title": "Owen Lars",
+  "franchise": "Obi-Wan Kenobi",
+  "description": "Owen Lars was a moisture farmer on Tatooine. Though Obi-Wan Kenobi had brought Luke Skywalker to Owen to raise, he wanted the Jedi to keep his distance. When the Third Sister attacked the Lars homestead, Owen and his wife Beru fought her. Xenobi arrived and de-escalated the situation. Afterward, Owen invited Kenobi to meet young Luke.",
+  "species": "Human",
+  "home_world": "Tatooine",
+  "affiliation": [
+    "Moisture Farmer"
+  ]
+}

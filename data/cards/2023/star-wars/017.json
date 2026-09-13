@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-017",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "17",
+  "title": "Saw Gerrera",
+  "franchise": "Andor",
+  "description": "Saw Gerrera was an early rebel against the Galactic Empire. His methods got him labelled as an extremist. Luthen Rael met with Gerrera on Segra Milo and tried to get Gerrera work with Anto Kreegyr. Gerrera resisted, given Kreegyr's Separatist past. Gerrera changed his mind, but understood that Kreegyr had to be sacrificed for the good of the Rebellion.",
+  "species": "Human",
+  "home_world": "Onderon",
+  "affiliation": [
+    "Onderon Rebels",
+    "Rebel Alliance"
+  ]
+}

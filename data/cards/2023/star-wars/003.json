@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-003",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "3",
+  "title": "The Mandalorian",
+  "franchise": "The Mandalorian",
+  "description": "Bounty hunter Din Djarin was known as The Mandalorian. Sent by Greef Karga to retrieve an asset for an Imperial client, Djarin instead bonded with The Child and rescued him from the Client. Djarin and his allies fought Moff Gideon's Imperial Remnant to protect Grogu. Grogu trained with Luke Skywalker, but the two reunited during the Battle of Mos Espa.",
+  "species": "Human",
+  "home_world": "Mandalore",
+  "affiliation": [
+    "The Children of the Watch",
+    "Bounty Hunter's guild"
+  ]
+}

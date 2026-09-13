@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-005",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "5",
+  "title": "8D8",
+  "franchise": "The Book of Boba Fett",
+  "description": "8D8 was a Smelter Droid who served Jabba the Hutt. While captives of Jabba, C-3PO and R2-D2 witnessed 8D8 torture a Gonk Droid. When Bib Fortuna seized control of the palace after Jabba's death, 8D8 remained in Fortuna's employ. Years later, Boba Fett killed Bib Fortuna and took over as daimyo in Fortuna's place. He kept 8D8 for his gotra",
+  "species": "Droid",
+  "home_world": "Tatooine",
+  "affiliation": [
+    "Jabba the Hutt",
+    "Boba Fett"
+  ]
+}

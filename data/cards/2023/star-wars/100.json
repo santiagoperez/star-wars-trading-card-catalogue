@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-100",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "100",
+  "title": "Emperor Palpatine",
+  "franchise": "Star Wars: Return of the Jedi",
+  "description": "Emperor Palpatine was on the second Death Star to oversee its construction and to draw both the Rebel Alliance and Luke Skywalker to him. Palpatine nearly gooded Luke into striking him down, and watched Luke fight his father, Darth Vader. When Luke would not turn, Palpatine attacked. To save Luke, Vader seized Palpatine and threw him to his doom.",
+  "species": "Human",
+  "home_world": "Naboo",
+  "affiliation": [
+    "Sith",
+    "Galactic Empire"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-050",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "50",
+  "title": "Sully",
+  "franchise": "Obi-Wan Kenobi",
+  "description": "Sully Stark was part of the Hidden Path, the organization that helped Force-sensitive people and former Jedi escape from the Galactic Empire's Inquisitors. Sully took part in the raid on Inquisitorius to rescue a captured Princess Leia Organa. She piloted a T-47 airspeeder to help cover their eventual escape.",
+  "species": "Human",
+  "home_world": "Unknown",
+  "affiliation": [
+    "Hidden Path"
+  ]
+}

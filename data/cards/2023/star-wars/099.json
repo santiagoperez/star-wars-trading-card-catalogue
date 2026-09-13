@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-099",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "99",
+  "title": "Lando Calrissian",
+  "franchise": "Star Wars: The Empire Strikes Back",
+  "description": "Gambler and smuggler Lando Calrissian went respectable as baron administrator of Bespin's Cloud City. Lando betrayed his old friend Han Solo to Darth Vader, making a deal to protect his people. Realizing that the deal was bad, Lando tried to help save Han from being taken by Boba Fett. Lando and Chewbacca went to Tatooine to prepare for Han's rescue.",
+  "species": "Human",
+  "home_world": "Bespin",
+  "affiliation": [
+    "Cloud City",
+    "Rebel Alliance"
+  ]
+}

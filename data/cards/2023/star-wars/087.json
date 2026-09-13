@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-087",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "87",
+  "title": "Princess Leia Organa",
+  "franchise": "Star Wars: A New Hope",
+  "description": "Princess Leia Organa was an important member of the Rebel Alliance. She hid the Death Star plans in R2-D2 before being captured by Darth Vader. Tortured for the location of the Rebel base and forced to watch as the Death Star destroyed Alderaan, Leia escaped with the help of Luke Skywalker and his friends. The plans allowed Luke to destroy the Death Stars.",
+  "species": "Human",
+  "home_world": "Alderaan",
+  "affiliation": [
+    "Rebel Alliance"
+  ]
+}

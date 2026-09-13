@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-044",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "44",
+  "title": "Cal Kestis",
+  "franchise": "Star Wars Jedi: Fallen Order",
+  "description": "Cal Kestis was a Jedi Knight who escaped Order 66 and crafted a new life on Bracca. One day, Jedi-hunting Inquisitors arrived. Kestis found a way to escape, and a new home, with the crew of the Stinger Mantis. Together, they tracked down a fabled Jedi Holocron. Kestis decided it was best to destroy the artifact so it couldn't be used for evil.",
+  "species": "Human",
+  "home_world": "Bracca",
+  "affiliation": [
+    "Scrapper Guild",
+    "Jedi"
+  ]
+}

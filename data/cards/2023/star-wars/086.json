@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-086",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "86",
+  "title": "Han Solo",
+  "franchise": "Star Wars: A New Hope",
+  "description": "Han Solo, pilot of the Millennium Falcon, and Chewbacca were smugglers. When Han agreed to take Luke Skywalker and his group to Alderaan, Han had no idea that he would soon be involved in the Rebellion. He planned to leave before the Battle of Yavin, but returned to save Luke Skywalker from Darth Vader, allowing Luke to destroy the Death Star.",
+  "species": "Human",
+  "home_world": "Corellia",
+  "affiliation": [
+    "Rebel Alliance"
+  ]
+}

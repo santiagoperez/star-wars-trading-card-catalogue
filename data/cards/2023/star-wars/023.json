@@ -1,0 +1,16 @@
+{
+  "id": "2023-star-wars-023",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "23",
+  "title": "Jarek Yaeger",
+  "franchise": "Star Wars: Resistance",
+  "description": "Jarek Yaeger ran the repair station on Colossus, but he was also a skilled racer and a former X-wing pilot for the Rebel Alliance. When the Ace Pilots on the Colossus fought the First Order, Captain Doza decided that Yaeger would be squadron leader. Jacek helped Kaz convince Tam to return.",
+  "species": "Human",
+  "home_world": "Castilon",
+  "affiliation": [
+    "Racing - Team Fireball",
+    "Rebel Alliance",
+    "New Republic"
+  ]
+}

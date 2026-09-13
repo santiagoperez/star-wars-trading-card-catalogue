@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-055",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "55",
+  "title": "Tusken Chief",
+  "franchise": "The Book of Boba Fett",
+  "description": "The tribe of Tusken Raiders that took in Boba Fett was led by the Tusken Chief. Fett defeated a Sand Ape that menaced a young Tusken and allowed the child to get the adulation of his tribe. The Chief understood what Fett had done, and shared water with him as a sign of respect. Unfortuantely, the Tusken Chief was killed on orders of the Pyke Syndicate.",
+  "species": "Tusken",
+  "home_world": "Tatooine",
+  "affiliation": [
+    "Tusken Tribe"
+  ]
+}

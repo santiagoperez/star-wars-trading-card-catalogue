@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-040",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "40",
+  "title": "Dokk Strassi",
+  "franchise": "The Book of Boba Fett",
+  "description": "Trandoshan crime lord Dokk Strassi controlled part of Mos Espa. Strassi and other criminal leaders made an alliance with the Pykes against Boba Fett's gotra. However, their betrayal failed when Fett and his collection of allies defeated thir foot soldiers. Strassi and the other leaders were assassinated by Fennec Shand after the battle.",
+  "species": "Trandoshan",
+  "home_world": "Tatooine",
+  "affiliation": [
+    "Trandoshan Crime Family",
+    "Pyke Syndicate"
+  ]
+}

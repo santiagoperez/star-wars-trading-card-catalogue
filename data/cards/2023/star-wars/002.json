@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-002",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "2",
+  "title": "Magistrate Morgan Elsbeth",
+  "franchise": "The Mandalorian",
+  "description": "Morgan Elsbeth was Magistrate of the city of Calodan on Corvus. After Elsbeth tried to hire The Mandalorian, Din Djarin, to kill Ahsoka Tano, Djarin and Tano teamed up to overthrow her. Elsbeth fought Tano using a spear made of beskar. However, Tano defeated Elsbeth and demanded information on the Magistrate's master, Grand Admiral Thrawn.",
+  "species": "Human",
+  "home_world": "Corvus",
+  "affiliation": [
+    "Magistrate of Caledon"
+  ]
+}

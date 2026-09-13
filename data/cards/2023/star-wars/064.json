@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-064",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "64",
+  "title": "Obi-Wan Kenobi",
+  "franchise": "Obi-Wan Kenobi",
+  "description": "As the Old Republic fell, Obi-Wan Kenobi dueled his former Padawan and friend, Anakin Skywalker, and left him for dead on Mustafar. Kenobi helped hide Anakin's children, Princess Leia Organa and Luke Skywalker. Years later, Leia was kidnapped, and Kenobi diiscovered Anakin survived as Darth Vader. Kenobi rescued Leia and faced his old friend once more.",
+  "species": "Human",
+  "home_world": "Tatooine",
+  "affiliation": [
+    "Jedi Order",
+    "Rebel Alliance"
+  ]
+}

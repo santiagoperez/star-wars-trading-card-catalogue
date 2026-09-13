@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-098",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "98",
+  "title": "Mace Windu",
+  "franchise": "Star Wars: The Phantom Menace",
+  "description": "Jedi Master Mace Windu was skeptical of Qui-Gon Jinn's desire to train young Anakin Skywalker in the ways of the Force. After the events of the Battle of Naboo and the death of Qui-Gon, Windu spoke with Jedi Master Yoda about the threat of the Sith. The two agreed that an unseen Master was behind Darth Maul.",
+  "species": "Human",
+  "home_world": "Hanuun Kal",
+  "affiliation": [
+    "Jedi Order"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-004",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "4",
+  "title": "Kuiil",
+  "franchise": "The Mandalorian",
+  "description": "Ugnaught mechanic Kuiil was a vapor farmer on Arvala-7, when Din Djarin, The Mandalorian, traveled there in search of the Client's asset, he met Kuiil. Kuiil taught Djarin how to ride a blurrg and helped him repair the Razor Crest. Kuiil repaired IG-11 and the two joined Djarin. Kuiil died protecting Grogu from Imperial Biker Scouts.",
+  "species": "Ugnaught",
+  "home_world": "Arvala-7",
+  "affiliation": [
+    "Free Farmer",
+    "Ally of Din Djarin"
+  ]
+}

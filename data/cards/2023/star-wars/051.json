@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-051",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "51",
+  "title": "Twi'lek Server",
+  "franchise": "The Book of Boba Fett",
+  "description": "Twi'lek Garsa Fwip owned the Sanctuary cantina in Mos Espa on Tatooine. Among her many employees were Twi'lek servers. As tensions escalated between Boba Fett's gotra and the Pyke Syndicate, Sanctuary got caught in the middle. The Pykes bombed Sanctuary, killed Fwip and most of the cantina's occupants.",
+  "species": "Twi'lek",
+  "home_world": "Tatooine",
+  "affiliation": [
+    "Garsa Fwip's Sanctuary",
+    "Boba Fett"
+  ]
+}

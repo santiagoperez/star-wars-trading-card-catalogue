@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-033",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "33",
+  "title": "Paz Vizsla",
+  "franchise": "The Mandalorian",
+  "description": "A Mandalorian Heavy Gunner, Paz Vizsla hailed from the storied House Vizsla. He was a member of the Mandalorian covert on Nevarro, and was part of the group that came to Djarin's defense against the Bounty Hunter's Guild. Vizsla joined the Armorer's covert on the Glavis Ringworld. He challenged Djarin for ownership of the Darksaber, but lost their duel.",
+  "species": "Human",
+  "home_world": "Mandalore",
+  "affiliation": [
+    "The Children of the Watch"
+  ]
+}

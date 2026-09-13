@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-093",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "93",
+  "title": "Chewbacca",
+  "franchise": "Star Wars: A New Hope",
+  "description": "Best friend of Han Solo and co-pilot of the Millennium Falcon, Chewbacca was a 200-year-old Wookiee. At Mos Eisley cantina, Obi-Wan Kenobi booked passage with Han. Chewbacca helped rescue Princess Leia Organa from the Death Star. At the Battle of Yavin, the return of Han and Chewbacca allowed Luke Skywalker to destroy the Death Star.",
+  "species": "Wookiee",
+  "home_world": "Kashyyyk",
+  "affiliation": [
+    "Rebel Alliance"
+  ]
+}

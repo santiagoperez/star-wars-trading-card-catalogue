@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-006",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "6",
+  "title": "EV-9D9",
+  "franchise": "The Mandalorian",
+  "description": "EV-9D9 served Jabba the Hutt. After Luke Skywalker gifted Jabba with C-3P0 and R2-D2, EV-9D9 conducted a threatening orientation for the two new servants. In the years after the fall of the Galactic Empire, Ev-9D9 was seen tending bar in Mos Eisley.",
+  "species": "Droid",
+  "home_world": "Tatooine",
+  "affiliation": [
+    "Jabba the Hutt"
+  ]
+}

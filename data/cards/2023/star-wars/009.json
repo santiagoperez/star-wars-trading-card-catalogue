@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-009",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "9",
+  "title": "Moff Gideon",
+  "franchise": "The Mandalorian",
+  "description": "Moff Gideon led the Imperial Remnant on Nevarro. Before the Galactic Empire fell, he was responsible for the razing of Mandalore. The Mandalorian, Din Djarin and his allies defeated Gideon's remnant. Gideon later struck back, capturing Grogu on Tython. Djarin tracked down Gideon and beat him in single combat, earning the Darksaber.",
+  "species": "Human",
+  "home_world": "Unknown",
+  "affiliation": [
+    "Galactic Empire",
+    "Imperial Remnant"
+  ]
+}

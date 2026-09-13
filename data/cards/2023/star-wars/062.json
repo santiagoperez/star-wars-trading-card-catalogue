@@ -1,0 +1,15 @@
+{
+  "id": "2023-star-wars-062",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "62",
+  "title": "Lieutenant Gorn",
+  "franchise": "Andor",
+  "description": "Lieutenant Gorn was the inside man for Vel Sartha's heist team on Aldhani. He had lost his loyalty to the Galactic Empire after the death of the woman he loved. During the raid, Corporal Kimzi went to the vault to confront Sartha's heist team. Kimzi gunned down Gorn for being a spy before being killed in turn by Cassian Andor.",
+  "species": "Human",
+  "home_world": "Unknown",
+  "affiliation": [
+    "Galactic Empire",
+    "Aldhani Heist Crew"
+  ]
+}

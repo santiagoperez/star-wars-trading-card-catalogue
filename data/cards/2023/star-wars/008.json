@@ -1,0 +1,14 @@
+{
+  "id": "2023-star-wars-008",
+  "year": 2023,
+  "collection": "Star Wars",
+  "number": "8",
+  "title": "B2EMO",
+  "franchise": "Andor",
+  "description": "B2EMO was a Droid that served the Andor family. Bee was originally a Groundmech salvage assist unit. Like Astromech Droids, B2EMO was equipped with a prod that could deliver electric shocks. During Maarva Andor's funeral, B2EMO played a holographic message that provoked an uprising on Ferrix.",
+  "species": "Droid",
+  "home_world": "Ferrix",
+  "affiliation": [
+    "Andor Family"
+  ]
+}
