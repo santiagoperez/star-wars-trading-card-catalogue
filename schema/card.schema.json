@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.invalid/schemas/card.schema.json",
   "title": "Star Wars Topps card",
-  "description": "A single card in the Star Wars Topps catalog.",
+  "description": "Mechanized source data for one card in the Star Wars Topps catalog.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -10,8 +10,7 @@
     "year",
     "collection",
     "number",
-    "title",
-    "entities"
+    "title"
   ],
   "properties": {
     "id": {
@@ -35,57 +34,27 @@
       "type": "string",
       "minLength": 1
     },
-    "section": { "$ref": "#/$defs/nullableString" },
-    "subtitle": { "$ref": "#/$defs/nullableString" },
-    "franchise": { "$ref": "#/$defs/nullableString" },
-    "insert_collection": { "$ref": "#/$defs/nullableString" },
-    "description": { "$ref": "#/$defs/nullableString" },
-    "front_description": { "$ref": "#/$defs/nullableString" },
-    "back_description": { "$ref": "#/$defs/nullableString" },
-    "notes": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      }
-    },
-    "entities": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "characters",
-        "locations",
-        "home_worlds",
-        "species",
-        "organizations",
-        "vehicles",
-        "droids",
-        "creatures",
-        "concepts"
-      ],
-      "properties": {
-        "characters": { "$ref": "#/$defs/entityList" },
-        "locations": { "$ref": "#/$defs/entityList" },
-        "home_worlds": { "$ref": "#/$defs/entityList" },
-        "species": { "$ref": "#/$defs/entityList" },
-        "organizations": { "$ref": "#/$defs/entityList" },
-        "vehicles": { "$ref": "#/$defs/entityList" },
-        "droids": { "$ref": "#/$defs/entityList" },
-        "creatures": { "$ref": "#/$defs/entityList" },
-        "concepts": { "$ref": "#/$defs/entityList" }
-      }
-    }
+    "section": { "$ref": "#/$defs/nonEmptyString" },
+    "subtitle": { "$ref": "#/$defs/nonEmptyString" },
+    "franchise": { "$ref": "#/$defs/nonEmptyString" },
+    "insert_collection": { "$ref": "#/$defs/nonEmptyString" },
+    "description": { "$ref": "#/$defs/nonEmptyString" },
+    "front_description": { "$ref": "#/$defs/nonEmptyString" },
+    "back_description": { "$ref": "#/$defs/nonEmptyString" },
+    "species": { "$ref": "#/$defs/nonEmptyString" },
+    "home_world": { "$ref": "#/$defs/nonEmptyString" },
+    "affiliation": { "$ref": "#/$defs/nonEmptyStringList" },
+    "notes": { "$ref": "#/$defs/nonEmptyStringList" }
   },
   "$defs": {
-    "nullableString": {
-      "type": ["string", "null"]
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
     },
-    "entityList": {
+    "nonEmptyStringList": {
       "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      },
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/nonEmptyString" },
       "uniqueItems": true
     }
   }

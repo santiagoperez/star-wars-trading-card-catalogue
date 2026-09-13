@@ -42,14 +42,21 @@ def main() -> int:
                 "description",
                 "front_description",
                 "back_description",
+                "species",
+                "home_world",
             )
         ]
-        entity_values = [value for values in card["entities"].values() for value in values]
+        list_values = [
+            value
+            for field in ("affiliation", "notes")
+            for value in card.get(field, [])
+        ]
         search_index.append(
             {
                 "id": card["id"],
-                "text": " ".join(value for value in descriptive_values if value),
-                "entities": entity_values,
+                "text": " ".join(
+                    [value for value in descriptive_values if value] + list_values
+                ),
             }
         )
 

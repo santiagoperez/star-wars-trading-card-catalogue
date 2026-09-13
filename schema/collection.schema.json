@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/collection.schema.json",
+  "title": "Star Wars Topps collection",
+  "description": "Metadata shared by all cards in one Topps collection.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "year",
+    "name",
+    "manufacturer",
+    "base_card_count"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manufacturer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_card_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "checklist_url": {
+      "type": ["string", "null"],
+      "format": "uri"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

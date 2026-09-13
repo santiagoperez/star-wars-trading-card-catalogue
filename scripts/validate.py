@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Star Wars Topps card JSON files against the catalog schema."""
+"""Validate Star Wars Topps catalog JSON files against their schemas."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Iterable
 
 try:
-    from jsonschema import Draft202012Validator
+    from jsonschema import Draft202012Validator, FormatChecker
 except ImportError:
     print(
         "Missing dependency: install it with "
@@ -22,7 +22,9 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCHEMA = ROOT / "schema" / "card.schema.json"
+DEFAULT_COLLECTION_SCHEMA = ROOT / "schema" / "collection.schema.json"
 DEFAULT_CARDS = ROOT / "data" / "cards"
+DEFAULT_COLLECTIONS = ROOT / "data" / "collections"
 
 
 def json_files(path: Path) -> list[Path]:
@@ -55,7 +57,7 @@ def validate_paths(paths: list[Path], schema_path: Path = DEFAULT_SCHEMA) -> int
         print(f"Schema error: {error}", file=sys.stderr)
         return 2
 
-    validator = Draft202012Validator(schema)
+    validator = Draft202012Validator(schema, format_checker=FormatChecker())
     failures = 0
 
     for path in paths:
@@ -94,21 +96,29 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--schema",
         type=Path,
-        default=DEFAULT_SCHEMA,
-        help="JSON Schema path.",
+        help="JSON Schema path (card schema by default when paths are supplied).",
     )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    if not args.paths and not args.schema:
+        print("Cards")
+        card_status = validate_paths(json_files(DEFAULT_CARDS), DEFAULT_SCHEMA)
+        print("\nCollections")
+        collection_status = validate_paths(
+            json_files(DEFAULT_COLLECTIONS), DEFAULT_COLLECTION_SCHEMA
+        )
+        return max(card_status, collection_status)
+
     targets = args.paths or [DEFAULT_CARDS]
     try:
         files = sorted({file.resolve() for target in targets for file in json_files(target)})
     except FileNotFoundError as error:
         print(error, file=sys.stderr)
         return 2
-    return validate_paths(files, args.schema)
+    return validate_paths(files, args.schema or DEFAULT_SCHEMA)
 
 
 if __name__ == "__main__":
