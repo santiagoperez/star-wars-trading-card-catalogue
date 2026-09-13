@@ -19,7 +19,7 @@ except ImportError:
     )
     raise SystemExit(2)
 
-from add_collection import prompt_integer, prompt_text, release_year, slug
+from add_collection import release_year, slug
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,6 +72,79 @@ def confirm_finalization() -> bool:
         if answer in {"", "n", "no"}:
             return False
         print("Enter y or n.")
+
+
+def collections_with_templates(root: Path) -> list[tuple[int, str, int, int]]:
+    """Discover collections that currently have unfinished card templates."""
+    collections_directory = root / "data" / "collections"
+    if not collections_directory.is_dir():
+        raise FileNotFoundError(
+            f"collections directory not found: {collections_directory}"
+        )
+
+    choices: list[tuple[int, str, int, int]] = []
+    for collection_path in sorted(collections_directory.glob("*.json")):
+        try:
+            collection = read_json(collection_path)
+        except (OSError, json.JSONDecodeError, ValueError) as error:
+            print(
+                f"Skipping unreadable collection {relative(collection_path, root)}: {error}",
+                file=sys.stderr,
+            )
+            continue
+
+        year = collection.get("year")
+        name = collection.get("name")
+        if not isinstance(year, int) or not isinstance(name, str) or not name.strip():
+            print(
+                f"Skipping collection with invalid year/name: "
+                f"{relative(collection_path, root)}",
+                file=sys.stderr,
+            )
+            continue
+
+        card_directory = root / "data" / "cards" / str(year) / slug(name)
+        template_count = len(list(card_directory.glob("*.json.template")))
+        if not template_count:
+            continue
+        finalized_count = len(list(card_directory.glob("*.json")))
+        choices.append((year, name, template_count, finalized_count))
+
+    return sorted(choices, key=lambda item: (item[0], item[1].casefold()))
+
+
+def choose_collection(root: Path) -> tuple[int, str] | None:
+    choices = collections_with_templates(root)
+    if not choices:
+        print("No collections with .json.template files were found.")
+        return None
+
+    print("Collections with unfinished templates:\n")
+    for index, (year, name, template_count, finalized_count) in enumerate(
+        choices, start=1
+    ):
+        print(
+            f"  {index}. {year} - {name} "
+            f"({template_count} template(s), {finalized_count} finalized)"
+        )
+
+    while True:
+        default = " [1]" if len(choices) == 1 else ""
+        answer = input(f"\nSelect a collection{default} (or q to cancel): ").strip()
+        if answer.casefold() in {"q", "quit"}:
+            print("Cancelled; no files were renamed.")
+            return None
+        if not answer and len(choices) == 1:
+            return choices[0][0], choices[0][1]
+        try:
+            selected = int(answer)
+        except ValueError:
+            print("Enter one of the displayed numbers, or q to cancel.")
+            continue
+        if 1 <= selected <= len(choices):
+            choice = choices[selected - 1]
+            return choice[0], choice[1]
+        print("Enter one of the displayed numbers, or q to cancel.")
 
 
 def finalize_collection(
@@ -240,8 +313,10 @@ def main() -> int:
     try:
         if interactive:
             print("Finalize a Star Wars Topps collection\n")
-            args.year = prompt_integer("Release year", release_year)
-            args.name = prompt_text("Collection name")
+            selected = choose_collection(args.root.resolve())
+            if selected is None:
+                return 0
+            args.year, args.name = selected
         return finalize_collection(
             root=args.root.resolve(),
             year=args.year,

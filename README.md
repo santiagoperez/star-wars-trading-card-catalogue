@@ -99,8 +99,9 @@ After filling every template in a collection, run a validation-only preview:
 python scripts/finalize_collection.py --dry-run
 ```
 
-The guided command asks for the year and collection name. It validates every
-`.json.template` file against the card schema and also checks:
+The guided command discovers collections that contain `.json.template` files,
+shows their template and finalized-card counts, and lets you select one by
+number. It then validates every template against the card schema and checks:
 
 - collection metadata and card-to-collection consistency;
 - total finalized cards plus templates against the declared base-card count;
