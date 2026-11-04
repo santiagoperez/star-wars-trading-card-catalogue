@@ -5,13 +5,7 @@
   "description": "Mechanized source data for one card in the Star Wars Topps catalog.",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "id",
-    "year",
-    "collection",
-    "number",
-    "title"
-  ],
+  "required": ["id", "year", "collection", "number", "title"],
   "properties": {
     "id": {
       "type": "string",
@@ -44,6 +38,7 @@
     "species": { "$ref": "#/$defs/nonEmptyString" },
     "home_world": { "$ref": "#/$defs/nonEmptyString" },
     "location": { "$ref": "#/$defs/nonEmptyString" },
+    "artist": { "$ref": "#/$defs/nonEmptyString" },
     "affiliation": { "$ref": "#/$defs/nonEmptyStringList" },
     "notes": { "$ref": "#/$defs/nonEmptyStringList" }
   },

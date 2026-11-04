@@ -26,6 +26,7 @@ OPTIONAL_TEMPLATE_FIELDS = (
     ("home_world", "Home world"),
     ("location", "Location"),
     ("affiliation", "Affiliation"),
+    ("artist", "Artist"),
     ("notes", "Card notes"),
 )
 OPTIONAL_FIELD_NAMES = tuple(name for name, _ in OPTIONAL_TEMPLATE_FIELDS)
