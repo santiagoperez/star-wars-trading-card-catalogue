@@ -3,21 +3,21 @@ import json
 from pathlib import Path
 
 
-def load_titles(path: Path) -> list[str]:
-    """Load one card title per line, preserving order."""
+def load_attributes(path: Path) -> list[str]:
+    """Load one card attribute per line, preserving order."""
     with path.open("r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Populate JSON template files with card titles."
+        description="Populate JSON template files with card attributes."
     )
 
     parser.add_argument(
-        "titles_file",
+        "attributes_file",
         type=Path,
-        help="Text file containing one card title per line, in card-number order.",
+        help="Text file containing one card attribute per line, in card-number order.",
     )
 
     parser.add_argument(
@@ -26,9 +26,16 @@ def main():
         help="Directory containing the .json.template files.",
     )
 
+    parser.add_argument(
+        "--replacing_attribute",
+        type=str,
+        help="Attribute to be replace.",
+        default="title",
+    )
+
     args = parser.parse_args()
 
-    titles = load_titles(args.titles_file)
+    attributes = load_attributes(args.attributes_file)
 
     templates = sorted(
         args.templates_dir.glob("*.json.template"),
@@ -38,27 +45,27 @@ def main():
     if not templates:
         raise SystemExit("No .json.template files found.")
 
-    if len(templates) != len(titles):
+    if len(templates) != len(attributes):
         raise SystemExit(
-            f"Number of titles ({len(titles)}) does not match "
+            f"Number of attributes ({len(attributes)}) does not match "
             f"number of templates ({len(templates)})."
         )
 
-    for template_path, title in zip(templates, titles):
+    for template_path, attribute in zip(templates, attributes):
 
         # Load the existing template
         with template_path.open("r", encoding="utf-8") as f:
             card = json.load(f)
 
-        # Update ONLY the title
-        card["title"] = title
+        # Update ONLY the attribute
+        card[args.replacing_attribute] = attribute
 
         # Write back to the SAME .json.template file
         with template_path.open("w", encoding="utf-8") as f:
             json.dump(card, f, indent=2, ensure_ascii=False)
             f.write("\n")
 
-        print(f"{template_path.name} → {title}")
+        print(f"{template_path.name} → {attribute}")
 
     print(f"\nSuccessfully updated {len(templates)} templates.")
 
